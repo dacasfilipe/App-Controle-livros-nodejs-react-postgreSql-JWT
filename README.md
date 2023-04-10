@@ -67,6 +67,7 @@ Método: GET
 URL: /livros/:id
 Método: PUT
 Body:
+```json
 {
   "titulo": "Título do Livro Atualizado",
   "autor": "Autor do Livro Atualizado",
@@ -74,6 +75,7 @@ Body:
   "preco": 29.99,
   "foto": "URL da foto atualizada"
 }
+```
 
 ### 5. Remover Livro
 //em :id substitua pelo id do livro que deseja excluir do banco de dados
