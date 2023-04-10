@@ -18,10 +18,15 @@ npm install
 ## Configuração
 
 Crie um arquivo `.env` na raiz do projeto e preencha as seguintes variáveis de ambiente:
+
 DB_HOST=localhost
+
 DB_PORT=5432
+
 DB_USER=seu_usuario
+
 DB_PASSWORD=sua_senha
+
 DB_DATABASE=nome_do_banco_de_dados
 
 
@@ -48,7 +53,7 @@ nodemon app
   "preco": 25.99,
   "foto": "URL da foto"
 }
-
+```
 ### 2. Listar Livros
 URL: /livros
 Método: GET
