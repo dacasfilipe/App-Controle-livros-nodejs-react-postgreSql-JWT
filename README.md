@@ -8,6 +8,9 @@ Aplicativo para controle de livros com múltiplas tabelas e banco de dados.
 Essa API RESTful permite realizar operações CRUD (Create, Read, Update, Delete) na tabela de livros 
 de um banco de dados PostgreSQL.
 
+## Updates sendo desenvolvidos
+Criação das tabelas de autor e editora, onde um livro deverá ter um autor ou mais autores e uma editora.
+
 ## Instalação
 você deve primeiro abrir um terminal no seu Sistema operacional e acessar a pasta deste projeto após fazer o download.
 
