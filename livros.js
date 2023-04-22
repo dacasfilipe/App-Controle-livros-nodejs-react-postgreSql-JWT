@@ -3,41 +3,57 @@ const router = express.Router();
 
 const dbKnex = require("./data/db_config");
 
-//método GET para listar todos os livros
-router.get('/', async(req, res) => {
-    try{
-        const livros = await dbKnex('livros').orderBy('id', 'desc');
-        res.status(200).json(livros);//retorna ok e os dados
-    }catch(err){
-        res.status(400).json({message: error.message}); // retorna status de erro e mensagens
-    }  
+// Método GET para listar todos os livros com informações de autores e editoras
+router.get('/', async (req, res) => {
+    try {
+        const livros = await dbKnex('livros')
+            .join('autores', 'livros.autor_id', '=', 'autores.id')
+            .join('editoras', 'livros.editora_id', '=', 'editoras.id')
+            .select('livros.*', 'autores.nome as autor', 'editoras.nome as editora')
+            .orderBy('livros.id', 'desc');
+        res.status(200).json(livros);
+    } catch (err) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
-//método POST para cadastrar um livro
-router.post('/', async(req, res) => {
-    //faz a desestruturação dos dados recebidos no corpo da requisição
-    const {titulo,autor,ano,preco,foto} = req.body;
+// Método POST para cadastrar um livro
+router.post('/', async (req, res) => {
+    const { titulo, autor_id, editora_id, ano, preco, foto } = req.body;
 
-    //se algum dos campos não foi passado , irá enviar uma mensagem de erro ao retornar
-    if (!titulo || !autor || !ano || !preco || !foto) {
-        return res.status(400).json({message: 'Preencha todos os campos'});
+    if (!titulo || !autor_id || !editora_id || !ano || !preco || !foto) {
+        return res.status(400).json({ message: 'Preencha todos os campos' });
     }
 
-    //caso ocorra algum erro na inclusão, o programa irá capturar (catch) o erro e enviar uma mensagem de erro
-    try{
-        //insert, faz a inserção na tabela livros e retorna o id gerado
+    try {
         const novo = await dbKnex('livros').insert({
             titulo,
-            autor,
+            autor_id,
+            editora_id,
             ano,
             preco,
             foto
         });
-        res.status(201).json({id:novo[0]}); //statusCode indica Create
-    }catch(error){
-        res.status(400).json({message: error.message}); // retorna status de erro e mensagens
+        res.status(201).json({ id: novo[0] });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
+});
 
+// Filtro por título ou autor
+router.get("/filtro/:palavra", async (req, res) => {
+    const { palavra } = req.params;
+    try {
+        const livros = await dbKnex('livros')
+            .join('autores', 'livros.autor_id', '=', 'autores.id')
+            .join('editoras', 'livros.editora_id', '=', 'editoras.id')
+            .select('livros.*', 'autores.nome as autor', 'editoras.nome as editora')
+            .where("livros.titulo", "like", `%${palavra}%`)
+            .orWhere("autores.nome", "like", `%${palavra}%`);
+        res.status(200).json(livros);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 //método PUT para atualizar um livro, o id indica o registro a ser alterado
