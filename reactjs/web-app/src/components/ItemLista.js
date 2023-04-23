@@ -1,12 +1,13 @@
 import "./css/ItemLista.css";
 //const ItemLista = (props) => { 
 //nocódigo abaixo fiz a desestruturação de props
-const ItemLista = ({id,titulo,autor,ano,preco,foto,excluirClick,alterarClick}) => {
+const ItemLista = ({id,titulo,autor,editora,ano,preco,foto,excluirClick,alterarClick}) => {
     return (
         <tr>
             <td>{id}</td>
             <td>{titulo}</td>
             <td>{autor}</td>
+            <td>{editora}</td>
             <td>{ano}</td>
             <td class="text-end">
                 {Number(preco).toLocaleString("pt-br", {minimumFractionDigits:2})}
