@@ -87,6 +87,7 @@ const alterar = async (id,titulo,index) => {
                     <th>Cód.</th>
                     <th>Titulo</th>
                     <th>Autor</th>
+                    <th>Editora</th>
                     <th>Ano</th>
                     <th>Preço</th>
                     <th>Foto</th>
@@ -100,6 +101,7 @@ const alterar = async (id,titulo,index) => {
                         id={livro.id}
                         titulo={livro.titulo}
                         autor={livro.autor}
+                        editora={livro.editora}
                         ano={livro.ano}
                         preco={livro.preco}
                         foto={livro.foto}
