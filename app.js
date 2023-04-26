@@ -1,10 +1,29 @@
 const express = require('express');
 const cors = require("cors");
 const app = express();
+const consign = require('consign');
 const port = 3001;
 const bodyParser = require('body-parser');
 // middleware CORS adicionado antes das rotas para permitir acesso de outros domínios
 app.use(cors());
+
+//autenticação jwt
+consign()
+		.include('db.js')
+		.then('models')
+        .then('associations.js')
+		.then('auth.js')
+		.then('middlewares.js')
+		.then('routes')
+		.then('boot.js')
+		.into(app);
+
+app.use(app.auth.initialize())
+app.set('json	spaces',	4);
+app.use((req,	res,	next)	=>	{
+    delete	req.body.id;
+    next();
+});
 
 // Configura o body-parser
 app.use(bodyParser.json());
