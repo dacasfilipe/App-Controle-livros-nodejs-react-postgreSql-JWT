@@ -1,6 +1,2 @@
-module.exports	=	{    
-    jwt:	{
-            secret:	SECRET_TOKEN,
-            options:	{	session:	false	}
-    }
-};
+const env = process.env.NODE_ENV || 'development';
+module.exports=require(`./config/${env}.js`);
