@@ -50,7 +50,10 @@ describe('Routes: Token', () => {
                 .end(done);
             });
             it('throws error when email and password are blank', done => {
-                //código de teste
+                //caso de teste onde não é informado email e senha
+                request.post('/token')
+                .expect(401)
+                .end(done);
             });
         });
     });
