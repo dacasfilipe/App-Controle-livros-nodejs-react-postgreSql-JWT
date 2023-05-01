@@ -40,7 +40,14 @@ describe('Routes: Token', () => {
                 .end(done);
             });
             it('throws error when email not exist', done => {
-                //código de teste
+                //caso de teste de email inexistente
+                request.post('/token')
+                .send({
+                    email: 'EMAIL_ERRADO',
+                    password: 'SENHA_ERRADA'
+                })
+                .expect(401)
+                .end(done);
             });
             it('throws error when email and password are blank', done => {
                 //código de teste
