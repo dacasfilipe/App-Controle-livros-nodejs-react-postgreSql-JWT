@@ -15,6 +15,7 @@ describe('Routes: Token', () => {
     });
         describe('status 200', () => {
             it('returns authenticated user token', done => {
+                //caso de teste de usuário autenticado
                 request.post('/token')
                 .send({
                     email: 'john@mail.net',
@@ -29,7 +30,14 @@ describe('Routes: Token', () => {
         });
         describe('status 401', () => {
             it('throws error when password is incorrect', done => {
-                //código de teste
+                //caso de teste de senha incorreta
+                request.post('/token')
+                .send({
+                    email: 'john@mail.net',
+                    password: 'SENHA_ERRADA'
+                })
+                .expect(401)
+                .end(done);
             });
             it('throws error when email not exist', done => {
                 //código de teste
