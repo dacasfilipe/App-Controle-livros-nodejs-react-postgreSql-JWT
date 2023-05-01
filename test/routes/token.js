@@ -1,3 +1,5 @@
+const { request } = require("express");
+
 describe('Routes: Token', () => {
     const Users = app.db.models.Users;
     describe('POST /token', () => {
@@ -10,9 +12,19 @@ describe('Routes: Token', () => {
                 email: 'john@mail.net',
                 password: '12345'
         });
+    });
         describe('status 200', () => {
             it('returns authenticated user token', done => {
-                //código de teste
+                request.post('/token')
+                .send({
+                    email: 'john@mail.net',
+                    password: '12345'
+                })
+                .expect(200)
+                .end((err, res) => {
+                    expect(res.body).to.include.keys('token');
+                    done(err);
+                });
             });
         });
         describe('status 401', () => {
