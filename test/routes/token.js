@@ -4,7 +4,11 @@ describe('Routes: Token', () => {
         //a função beforeEach é executada antes de cada teste
         //ela cadastra um usuário para ser usado nos testes
         beforeEach(async ()=> {
-            
+            await Users.destroy({where: {}});
+            await Users.create({
+                name: 'John',
+                email: 'john@mail.net',
+                password: '12345'
         });
         describe('status 200', () => {
             it('returns authenticated user token', done => {
