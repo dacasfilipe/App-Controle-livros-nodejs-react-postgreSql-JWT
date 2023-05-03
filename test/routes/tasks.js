@@ -1,12 +1,25 @@
 const jwt = require('jwt-simple');
+const config = require('../../config');
 
 describe('Routes: Tasks', () => {
     const Users = app.models.users;
     const Tasks = app.models.tasks;
     let token;
     let fakeTask;
-    beforeEach(done => {
-        //código de teste
+    beforeEach(async () => {
+        await Users.destroy({where: {}});           
+        const user = await Users.create({
+            name: 'John',
+            email: 'john@mail.net',
+            password: '12345'
+        });
+        await Tasks.destroy({where: {}});
+        const tasks = await Tasks.bulkCreate([
+            {id:1, title: 'Work', userId: user.id},
+            {id:1, title: 'Work', userId: user.id}
+        ]);
+        fakeTask = tasks[0];
+        token = jwt.encode({id: user.id}, config.jwtSecret);
     });
 
     describe('GET /tasks', () => {
