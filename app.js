@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Arquivos com rotas para o cadastro de livros, autores e editoras
-const livros = require('./livros');
-const autores = require('./autores');
-const editoras = require('./editoras');
+const livros = require('./controllers/livros');
+const autores = require('./controllers/autores');
+const editoras = require('./controllers/editoras');
 
 app.use('/livros', livros);
 app.use('/autores', autores);

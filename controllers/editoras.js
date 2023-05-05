@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const dbKnex = require("./data/db_config");
+const dbKnex = require("../data/db_config");
 
 // Método GET para listar todas as editoras
 router.get('/', async (req, res) => {
