@@ -18,6 +18,14 @@ preco: 97.0, foto: "https://s3.novatec.com.br/capas/9786586057843.jpg",
   titulo: "Python para análise de dados", autor:"Wes Mckinney", ano:2018,
 preco: 132.0, foto: "https://s3.novatec.com.br/capas/9788575226476.jpg",
 },
+{
+  titulo: "Python para todos", autor:"GAbe", ano:2022,
+preco: 132.0, foto: "https://s3.novatec.com.br/capas/9788575226476.jpg",
+},
+{
+  titulo: "Python a bíblia", autor:"Wes ", ano:2023,
+preco: 132.0, foto: "https://s3.novatec.com.br/capas/9788575226476.jpg",
+},
     
   ]);
 };
