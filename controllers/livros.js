@@ -1,6 +1,8 @@
+// Importa o módulo Express e cria um objeto router para lidar com as rotas.
 const express = require('express');
 const router = express.Router();
 
+// Importa a configuração do banco de dados usando o Knex.
 const dbKnex = require("../data/db_config");
 
 // Método GET para listar todos os livros com informações de autores e editoras
