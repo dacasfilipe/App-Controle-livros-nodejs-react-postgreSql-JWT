@@ -1,3 +1,4 @@
+// Importa componentes e bibliotecas necessárias
 import {Routes, Route} from "react-router-dom";
 import MenuSuperior from "./components/MenuSuperior";
 import InclusaoLivros from "./components/InclusaoLivros";
@@ -6,9 +7,11 @@ import InclusaoEditoras from "./components/InclusaoEditoras";
 import ManutencaoLivros from "./components/ManutencaoLivros";
 import ResumoLivros from "./components/ResumoLivros";
 
-
+// Define o componente principal 'App'
 const App = () => {
+  // Retorna o JSX do componente
   return (
+    // Fragmento do React para agrupar elementos sem adicionar um elemento extra no DOM
     <>  
       <MenuSuperior />
       <Routes>
@@ -22,4 +25,5 @@ const App = () => {
   );
 };
 
+// Exporta o componente 'App' como padrão
 export default App;
