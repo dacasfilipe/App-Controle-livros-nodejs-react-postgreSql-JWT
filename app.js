@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 app.use(express.json());
 app.post('/filmes', (req, res) => {
     const { titulo, genero } = req.body;
-    res.send(`Filme:${titulo} , Genero:${genero} , recebido ...`);
+    res.send(`Filme:${titulo} , Genero:${genero} , mensagem recebida ...`);
 })
 
 // Exemplo de Middleware
